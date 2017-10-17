@@ -1,0 +1,55 @@
+# Run as 
+# ansible-playbook --ask-become-pass -i "localhost," osx-dev-setup.yml
+---
+- name: Personal development setup for OSX
+  hosts: localhost 
+  connection: local 
+  tasks:
+  
+  # - name: Install cask applications 
+  #   homebrew_cask:
+  #     name:  "{{ item }}"
+  #     state: present
+  #   with_items:
+  #   - google-chrome
+  #   - iterm2
+  #   - google-backup-and-sync
+  #   - visual-studio-code
+  #   - intellij-idea-ce
+  #   - typora
+  #   - docker
+  #   - psequel
+  #   - pgadmin4
+  #   - slack
+  #   - postgres
+
+  - name: Install brew applications 
+    homebrew:
+      name:  "{{ item }}"
+      state: present
+    with_items:
+    - pgcli
+    - python3
+    - docker-cloud
+    - htop
+    - telnet
+
+  - name: Install pip applications 
+    become: true
+    pip:
+      name: "{{ item }}"
+      extra_args: --user
+    with_items:
+    - pgcli
+    - virtualenv
+    - virtualenvwrapper
+    - docker-cloud
+
+  - name: Increase sudo timeout
+    become: true
+    lineinfile:
+      create: true
+      path: /private/etc/sudoers.d/timeout
+      validate: 'visudo -cf %s'
+      line: Defaults timestamp_timeout=60
+
