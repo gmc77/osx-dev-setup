@@ -6,22 +6,27 @@
   connection: local 
   tasks:
   
-  # - name: Install cask applications 
-  #   homebrew_cask:
-  #     name:  "{{ item }}"
-  #     state: present
-  #   with_items:
-  #   - google-chrome
-  #   - iterm2
-  #   - google-backup-and-sync
-  #   - visual-studio-code
-  #   - intellij-idea-ce
-  #   - typora
-  #   - docker
-  #   - psequel
-  #   - pgadmin4
-  #   - slack
-  #   - postgres
+  - name: Testing sudo password
+    become: True
+    shell: echo "It works!"
+
+  - name: Install cask applications 
+    homebrew_cask:
+      name:  "{{ item }}"
+      state: present
+    with_items:
+    - google-chrome
+    - iterm2
+    - google-backup-and-sync
+    - visual-studio-code
+    - intellij-idea-ce
+    - typora
+    - docker
+    - psequel
+    - pgadmin4
+    - slack
+    - postgres
+    - cyberduck
 
   - name: Install brew applications 
     homebrew:
