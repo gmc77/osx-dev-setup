@@ -13,31 +13,43 @@
   - name: Install cask applications 
     homebrew_cask:
       name:  "{{ item }}"
-      state: present
     with_items:
-    - google-chrome
-    - iterm2
-    - google-backup-and-sync
-    - visual-studio-code
-    - intellij-idea-ce
-    - typora
+    - cyberduck
     - docker
+    - google-chrome
+    - google-cloud-sdk
+    - google-backup-and-sync
+    - intellij-idea-ce
+    - iterm2
+    - java
+    - postgres
     - psequel
     - pgadmin4
     - slack
-    - postgres
-    - cyberduck
+    - skype
+    - typora
+    - visual-studio-code
+    - virtualbox
+    - vagrant
 
   - name: Install brew applications 
     homebrew:
       name:  "{{ item }}"
       state: present
     with_items:
-    - pgcli
-    - python3
+    - bfg
     - docker-cloud
     - htop
+    - pgcli
+    - python3
     - telnet
+    - wget
+    - inetutils
+    - git-flow-avh
+    - https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb
+
+  - name: Install sshpass
+    command: brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb
 
   - name: Install pip applications 
     become: true
@@ -45,10 +57,11 @@
       name: "{{ item }}"
       extra_args: --user
     with_items:
+    - docker-cloud
     - pgcli
     - virtualenv
     - virtualenvwrapper
-    - docker-cloud
+    - awscli
 
   - name: Increase sudo timeout
     become: true
