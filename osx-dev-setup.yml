@@ -22,11 +22,13 @@
     - intellij-idea-ce
     - iterm2
     - java
+    - postman
     - postgres
     - psequel
     - pgadmin4
     - slack
     - skype
+    - sourcetree
     - typora
     - visual-studio-code
     - virtualbox
@@ -38,8 +40,10 @@
       state: present
     with_items:
     - bfg
+    - ccze
     - docker-cloud
     - htop
+    - npm
     - pgcli
     - python3
     - telnet
@@ -55,13 +59,14 @@
     become: true
     pip:
       name: "{{ item }}"
-      extra_args: --user
+      extra_args: --user --upgrade
     with_items:
     - docker-cloud
     - pgcli
     - virtualenv
     - virtualenvwrapper
     - awscli
+    - aws-sam-cli
 
   - name: Increase sudo timeout
     become: true
