@@ -43,6 +43,8 @@
     - ccze
     - docker-cloud
     - htop
+    - maven
+    - mongo
     - npm
     - pgcli
     - python3
